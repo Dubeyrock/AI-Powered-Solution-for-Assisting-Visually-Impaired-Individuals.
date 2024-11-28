@@ -75,8 +75,8 @@ def main():
    # Correcting the path definition with raw string (r) and removing redundant variable name
     #sidebar_image_path = r'https://github.com/Dubeyrock/AI-Powered-Solution-for-Assisting-Visually-Impaired-Individuals./blob/main/back_ground.jpg'
 
-    sidebar_image = Image.open(sidebar_image_path)
-    st.sidebar.image(sidebar_image, use_column_width=True)
+    #sidebar_image = Image.open(sidebar_image_path)
+    #st.sidebar.image(sidebar_image, use_column_width=True)
 
     st.title('AI Assistive Tool for Visually Impaired 👁️ 🤖')
     # Project Overview
