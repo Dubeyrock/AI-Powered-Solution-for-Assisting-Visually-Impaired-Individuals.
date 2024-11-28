@@ -49,3 +49,7 @@ The application offers the following functionalities:
 ## Application demo : 
 
 ![image](https://github.com/user-attachments/assets/8429376f-da62-4dbd-be8c-a582c6bd8a8c)
+
+
+![image](https://github.com/user-attachments/assets/eb05bad1-40f7-42f8-8c82-dbdf57c1c225)
+
