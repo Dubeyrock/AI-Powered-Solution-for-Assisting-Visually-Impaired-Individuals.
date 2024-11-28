@@ -11,8 +11,7 @@ import base64
 
 
 # Set Tesseract command for local testing (Windows)
-
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # Configure Google Gemini API Key
 GOOGLE_API_KEY = "AIzaSyCpybaH_MC6gItkK5Sn2fZ4FpU_HDxoVbQ"  ## add your api key 
@@ -73,15 +72,7 @@ def detect_and_highlight_objects(image):
 def main():
     st.set_page_config(page_title="AI Assistive Tool", layout="wide", page_icon="🤖")
 
-    # Adding background image to sidebar
-   # Correcting the path definition with raw string (r) and removing redundant variable name
-    #sidebar_image_path = r'https://github.com/Dubeyrock/AI-Powered-Solution-for-Assisting-Visually-Impaired-Individuals./blob/main/back_ground.jpg'
-
-    #sidebar_image = Image.open(sidebar_image_path)
-    #st.sidebar.image(sidebar_image, use_column_width=True)
-
     st.title('AI Assistive Tool for Visually Impaired 👁️ 🤖')
-    # Project Overview
     st.write("""
         This AI-powered tool assists visually impaired individuals by leveraging image analysis. 
         It provides the following features:
