@@ -1,4 +1,4 @@
-# AI-Assistive-Tool-for-Visually-Impaired-
+# AI-Assistive-Tool-for-Visually-Impaired
 
  AI Assistive Tool for Visually Impaired 
 **deploy link-** https://ai-powered-solution-for-assisting-visually-impaired-individual.streamlit.app/
