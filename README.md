@@ -1,7 +1,7 @@
 # AI-Assistive-Tool-for-Visually-Impaired
 
  AI Assistive Tool for Visually Impaired 
-**deploy link-** https://ai-powered-solution-for-assisting-visually-impaired-individual.streamlit.app/
+**deploy link-** https://animated-meme-7jxggw7rq49fwgv-8501.app.github.dev/
 
 ## Project Overview
 This project aims to develop an AI-powered application that assists visually impaired individuals by leveraging Generative AI and computer vision techniques. The application provides features like real-time scene understanding, text-to-speech conversion, object and obstacle detection, and personalized assistance. The goal is to create an intuitive, accessible solution to help visually impaired users better perceive and interact with their surroundings.
@@ -54,4 +54,5 @@ The application offers the following functionalities:
 
 
 ![image](https://github.com/user-attachments/assets/eb05bad1-40f7-42f8-8c82-dbdf57c1c225)
+
 

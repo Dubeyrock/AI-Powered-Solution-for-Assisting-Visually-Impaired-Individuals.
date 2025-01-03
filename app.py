@@ -14,7 +14,7 @@ import base64
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # Configure Google Gemini API Key
-GOOGLE_API_KEY = "AIzaSyCpybaH_MC6gItkK5Sn2fZ4FpU_HDxoVbQ"  ## add your api key 
+GOOGLE_API_KEY = "AIzaSyDOTIWJl_mr6JbhO-QxGOWCYMEAxJY9Vus"  ## add your api key 
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GOOGLE_API_KEY)
 
 # Function to convert an image to Base64 format
@@ -72,30 +72,30 @@ def detect_and_highlight_objects(image):
 def main():
     st.set_page_config(page_title="AI Assistive Tool", layout="wide", page_icon="🤖")
 
-    st.title('AI Assistive Tool for Visually Impaired 👁️ 🤖')
+    st.title("Ko'zi ojizlar uchun AI yordamchi vositasi 👁️ 🤖")
     st.write("""
-        This AI-powered tool assists visually impaired individuals by leveraging image analysis. 
-        It provides the following features:
-        - **Scene Understanding**: Describes the content of uploaded images.
-        - **Text-to-Speech Conversion**: Extracts and reads aloud text from images using OCR.
-        - **Object & Obstacle Detection**: Identifies objects or obstacles for safe navigation.
-        - **Personalized Assistance**: Offers task-specific guidance based on image content, like reading labels or recognizing items.
+       Ushbu sun'iy intellektga asoslangan vosita tasvirni tahlil qilish orqali ko'rish qobiliyati zaif odamlarga yordam beradi. 
+        U quyidagi xususiyatlarni taqdim etadi:
+        - **Scene Understanding**: Yuklangan tasvirlar mazmunini tavsiflaydi.
+        - **Matnni nutqqa aylantirish**: OCR yordamida tasvirlardan matnni chiqarib oladi va ovoz chiqarib o‘qiydi.
+        - **Ob'ekt va to'siqlarni aniqlash**: Xavfsiz navigatsiya uchun ob'ektlar yoki to'siqlarni aniqlaydi.
+        - **Shaxsiylashtirilgan yordam**: yorliqlarni o‘qish yoki elementlarni tanib olish kabi tasvir mazmuniga asoslangan vazifaga oid ko‘rsatmalarni taklif qiladi.
         
-        Upload an image to get started and let AI help you understand and interact with your environment!
+        Boshlash uchun rasmni yuklang va AI sizning atrof-muhitingizni tushunish va o'zaro munosabatda bo'lishga yordam beradi!
     """)
 
-    st.sidebar.header("📂 Upload Image")
-    uploaded_file = st.sidebar.file_uploader("Choose an image (jpg, jpeg, png)", type=['jpg', 'jpeg', 'png'])
+    st.sidebar.header("📂 Rasmni yuklang")
+    uploaded_file = st.sidebar.file_uploader("Rasmni yuklang (jpg, jpeg, png)", type=['jpg', 'jpeg', 'png'])
 
-    st.sidebar.header("🔧 Instructions")
+    st.sidebar.header("🔧 Ko'rsatma")
     st.sidebar.write("""
-    1. Upload an image.
-    2. Choose an option below:
-       - 🖼️ Describe Scene: Get a description of the image.
-       - 📜 Extract Text: Extract text from the image.
-       - 🚧 Detect Objects & Obstacles: Identify obstacles and highlight them.
-       - 🛠️ Personalized Assistance: Get task-specific help.
-    3. Results will be read aloud for easy understanding.
+    1. Rasm yuklang.
+    2. Quyidagi variantni tanlang:
+       - 🖼️ Sahnani tasvirlash: Tasvir tavsifini oling.
+       - 📜 Matnni ajratib olish: Rasmdan matnni ajratib oling.
+       - 🚧 Ob'ektlar va to'siqlarni aniqlang: to'siqlarni aniqlang va ularni ta'kidlang.
+       - 🛠️ Shaxsiylashtirilgan yordam: vazifaga oid yordam oling.
+    3. Oson tushunish uchun natijalar ovoz chiqarib o'qiladi.
     """)
 
     if uploaded_file:
@@ -149,7 +149,7 @@ def main():
         if style_button("🖼️ Describe Scene", key="scene_description", active_button_key="scene_description"):
             st.session_state.active_button = "scene_description"
             with st.spinner("Generating scene description..."):
-                scene_prompt = "Describe this image briefly."
+                scene_prompt = "Ushbu rasmni qisqacha tasvirlab ber, o'zbek tilida"
                 scene_description = analyze_image(image, scene_prompt)
                 st.subheader("Scene Description")
                 st.success(scene_description)
@@ -174,7 +174,7 @@ def main():
         if style_button("🚧 Detect Objects & Obstacles", key="detect_objects", active_button_key="detect_objects"):
             st.session_state.active_button = "detect_objects"
             with st.spinner("Identifying objects and obstacles..."):
-                obstacle_prompt = "Identify objects or obstacles in this image and provide their positions for safe navigation."
+                obstacle_prompt = "Ushbu rasmdagi ob'ektlar yoki to'siqlarni aniqla va xavfsiz navigatsiya uchun ularning joylashishini uzbek tilida tushuntir."
                 obstacle_description = analyze_image(image, obstacle_prompt)
                 st.subheader("Objects & Obstacles Detected")
                 st.success(obstacle_description)
@@ -187,7 +187,7 @@ def main():
         if style_button("🛠️ Personalized Assistance", key="personalized_assistance", active_button_key="personalized_assistance"):
             st.session_state.active_button = "personalized_assistance"
             with st.spinner("Providing personalized guidance..."):
-                task_prompt = "Provide task-specific guidance based on the content of this image in brief. Include item recognition, label reading, and any relevant context."
+                task_prompt = "Ushbu rasmning qisqacha mazmuniga asoslanib, vazifaga oid ko'rsatmalar ber. Elementni aniqlash, yorliqlarni oʻqish va tegishli kontekstni qoʻsh, o'zbek tilida"
                 assistance_description = analyze_image(image, task_prompt)
                 st.subheader("Personalized Assistance")
                 st.success(assistance_description)
