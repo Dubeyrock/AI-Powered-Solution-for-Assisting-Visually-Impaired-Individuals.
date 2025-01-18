@@ -32,7 +32,7 @@ def analyze_image(image, prompt):
     try:
         image_base64 = image_to_base64(image)
         message = HumanMessage(
-            content=[ 
+            content=[
                 {"type": "text", "text": prompt},
                 {"type": "image_url", "image_url": f"data:image/png;base64,{image_base64}"}
             ]
@@ -71,7 +71,7 @@ def main():
     st.set_page_config(page_title="AI Assistive Tool", layout="wide", page_icon="🤖")
 
     # Adding background image to sidebar
-    sidebar_image_path = r'C:\Users\dubey\Desktop\New folder (10)\AI-Assistive-Tool-for-Visually-Impaired-\back_ground.jpg'
+    sidebar_image_path = r'C:\Users\dubey\Desktop\ai_assistive_app\ai_assistive_app\back_ground.jpg'
 
     # Check if the image file exists
     if os.path.exists(sidebar_image_path):
