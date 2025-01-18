@@ -8,6 +8,7 @@ import pytesseract
 from gtts import gTTS
 import io
 import base64
+import os
 
 # Set Tesseract OCR path
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -51,10 +52,8 @@ def text_to_speech(text):
 
 # Function to detect and highlight objects in the image
 def detect_and_highlight_objects(image):
-    # You can replace this with a more advanced object detection model (like YOLO or OpenCV)
-    # For simplicity, we'll just create random bounding boxes here as placeholders
+    # Example: Drawing rectangles as placeholders (Replace with actual object detection model)
     draw = ImageDraw.Draw(image)
-    # Example: Drawing rectangles as fake objects (Replace with actual detection model)
     objects = [
         {"label": "Obstacle", "bbox": (50, 50, 200, 200)},
         {"label": "Object", "bbox": (300, 100, 500, 300)}
@@ -73,10 +72,16 @@ def main():
 
     # Adding background image to sidebar
     sidebar_image_path = r'C:\Users\dubey\Desktop\New folder (10)\AI-Assistive-Tool-for-Visually-Impaired-\back_ground.jpg'
-    sidebar_image = Image.open(sidebar_image_path)
-    st.sidebar.image(sidebar_image, use_column_width=True)
+
+    # Check if the image file exists
+    if os.path.exists(sidebar_image_path):
+        sidebar_image = Image.open(sidebar_image_path)
+        st.sidebar.image(sidebar_image, use_column_width=True)
+    else:
+        st.sidebar.warning("Sidebar image not found. Please check the file path.")
 
     st.title('AI Assistive Tool for Visually Impaired 👁️ 🤖')
+
     # Project Overview
     st.write("""
         This AI-powered tool assists visually impaired individuals by leveraging image analysis. 
@@ -111,48 +116,9 @@ def main():
         st.session_state.last_uploaded_file = uploaded_file
         image = Image.open(uploaded_file)
 
-        st.markdown("""<style>
-            .centered-image {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 500px;
-            }
-        </style>""", unsafe_allow_html=True)
+        st.image(image, caption="Uploaded Image", use_column_width=True)
 
-        image_base64 = image_to_base64(image)
-        st.markdown(f'<img src="data:image/png;base64,{image_base64}" class="centered-image" />', unsafe_allow_html=True)
-
-        def style_button(label, key, active_button_key):
-            if 'active_button' not in st.session_state:
-                st.session_state.active_button = None
-
-            color = "green" if st.session_state.get('active_button') == active_button_key else "dodgerblue"
-
-            button_html = f"""
-            <style>
-                div[data-testid="stButton"] > button {{
-                    background-color: {color} !important;
-                    color: white !important;
-                    border: none !important;
-                    padding: 20px 40px !important;
-                    cursor: pointer !important;
-                    border-radius: 10px;
-                    font-size: 18px !important;
-                    font-weight: bold;
-                    transition: all 0.3s ease;
-                }}
-                div[data-testid="stButton"] > button:hover {{
-                    background-color: darkorange !important;
-                    transform: scale(1.1);
-                }}
-            </style>
-            """
-            st.markdown(button_html, unsafe_allow_html=True)
-            return st.button(label, key=key, help=f"Click to activate {label}")
-
-        if style_button("🖼️ Describe Scene", key="scene_description", active_button_key="scene_description"):
-            st.session_state.active_button = "scene_description"
+        if st.button("🖼️ Describe Scene"):
             with st.spinner("Generating scene description..."):
                 scene_prompt = "Describe this image briefly."
                 scene_description = analyze_image(image, scene_prompt)
@@ -160,37 +126,23 @@ def main():
                 st.success(scene_description)
                 st.audio(text_to_speech(scene_description), format='audio/mp3')
 
-        if style_button("📜 Extract Text", key="extract_text", active_button_key="extract_text"):
-            st.session_state.active_button = "extract_text"
+        if st.button("📜 Extract Text"):
             with st.spinner("Extracting text..."):
                 extracted_text = run_ocr(image)
+                st.subheader("Extracted Text")
                 if extracted_text:
-                    st.session_state.extracted_text = extracted_text
-                    st.subheader("Extracted Text")
                     st.info(extracted_text)
                     st.audio(text_to_speech(extracted_text), format='audio/mp3')
                 else:
-                    no_text_message = "No text detected in the image."
-                    st.session_state.extracted_text = no_text_message
-                    st.subheader("No Text Detected")
-                    st.info(no_text_message)
-                    st.audio(text_to_speech(no_text_message), format='audio/mp3')
+                    st.warning("No text detected in the image.")
 
-        if style_button("🚧 Detect Objects & Obstacles", key="detect_objects", active_button_key="detect_objects"):
-            st.session_state.active_button = "detect_objects"
+        if st.button("🚧 Detect Objects & Obstacles"):
             with st.spinner("Identifying objects and obstacles..."):
-                obstacle_prompt = "Identify objects or obstacles in this image and provide their positions for safe navigation."
-                obstacle_description = analyze_image(image, obstacle_prompt)
-                st.subheader("Objects & Obstacles Detected")
-                st.success(obstacle_description)
-                st.audio(text_to_speech(obstacle_description), format='audio/mp3')
-
-                # Highlight detected objects
                 highlighted_image, objects = detect_and_highlight_objects(image.copy())
                 st.image(highlighted_image, caption="Highlighted Image with Detected Objects", use_column_width=True)
+                st.success(f"Detected Objects: {[obj['label'] for obj in objects]}")
 
-        if style_button("🛠️ Personalized Assistance", key="personalized_assistance", active_button_key="personalized_assistance"):
-            st.session_state.active_button = "personalized_assistance"
+        if st.button("🛠️ Personalized Assistance"):
             with st.spinner("Providing personalized guidance..."):
                 task_prompt = "Provide task-specific guidance based on the content of this image in brief. Include item recognition, label reading, and any relevant context."
                 assistance_description = analyze_image(image, task_prompt)
