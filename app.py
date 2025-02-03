@@ -9,10 +9,9 @@ from gtts import gTTS
 import io
 import base64
 import os
-import pytesseract
 
-
-    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR"
+# Ensure correct Tesseract OCR path
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
 # Configure Google Gemini API Key
