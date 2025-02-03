@@ -72,9 +72,9 @@ def main():
     st.set_page_config(page_title="AI Assistive Tool", layout="wide", page_icon="🤖")
 
     # Adding background image to sidebar
-    sidebar_image_path = r'C:\Users\dubey\Desktop\New folder (10)\AI-Assistive-Tool-for-Visually-Impaired-\back_ground.jpg'
-    sidebar_image = Image.open(sidebar_image_path)
-    st.sidebar.image(sidebar_image, use_column_width=True)
+   # sidebar_image_path = r'C:\Users\dubey\Desktop\New folder (10)\AI-Assistive-Tool-for-Visually-Impaired-\back_ground.jpg'
+    #sidebar_image = Image.open(sidebar_image_path)
+   # st.sidebar.image(sidebar_image, use_column_width=True)
 
     st.title('AI Assistive Tool for Visually Impaired 👁️ 🤖')
     # Project Overview
