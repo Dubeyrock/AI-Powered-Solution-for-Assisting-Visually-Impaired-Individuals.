@@ -4,7 +4,7 @@
 **deploy link-** https://ai-powered-solution-for-assisting-visually-impaired-individual.streamlit.app/
 
 ## Project Overview
-This project aims to develop an AI-powered application that assists visually impaired individuals by leveraging Generative AI and computer vision techniques. The application provides features like real-time scene understanding, text-to-speech conversion, object and obstacle detection, and personalized assistance. The goal is to create an intuitive, accessible solution to help visually impaired users better perceive and interact with their surroundings.
+This project aims to develop an AI-powered application that assists visually impaired individuals by leveraging Generative AI and computer vision techniques. The application provides features like real-time scene understanding, text-to-speech conversion, object and obstacle detection, and personalized assistance. The goal is to create an intuitive, accessible solution to help visually impaired users better perceive and interact with their surroundings...
 
 ## Key Features
 The application offers the following functionalities:
